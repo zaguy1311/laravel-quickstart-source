@@ -57,4 +57,18 @@ Route::group(['middleware' => ['web']], function () {
 
         return redirect('/');
     });
+
+
+    Route::get('/task/delall', function () {
+
+        $tasks = Task::all();
+        foreach($tasks as $task)
+        {
+            $task->delete();
+        }
+
+        return response()->json([
+            'success' => true
+        ]);
+    });
 });
